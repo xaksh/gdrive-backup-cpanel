@@ -7,24 +7,29 @@ G_ID=""
 BACKUP_USER=""
 BACKUP_DIR="/home/backups"
 
+echo "~~~~~~~~~~~~~~ Starting BACKUP ~~~~~~~~~~~~~~"
+echo $DATE
 # Clean old Backup Directory and create fresh
 rm -rf $BACKUP_DIR && mkdir -p "$BACKUP_DIR/$DATE"
 wait
 
 # Backup all Databases
+echo "SQL Dump Started"
 source /root/gdrive-backup-cpanel/database.sh
 wait
 
 # Create User Directory backup
-zip -q -r0 "$BACKUP_DIR/$DATE/$BACKUP_USER.zip" /home/$BACKUP_USER/*
+echo "Creating tar.gz backup file"
+time tar -czf "$BACKUP_DIR/$DATE/$BACKUP_USER.tar.gz" /home/$BACKUP_USER/*
+
 wait
 
 # Upload backup files to respected Directory in Google Drive
-/usr/local/bin/gdrive upload --recursive --parent $G_ID $BACKUP_DIR/$DATE
+time /usr/local/bin/gdrive upload --recursive --parent $G_ID $BACKUP_DIR/$DATE
 wait
 
 # Remove backup directory
-rm -rf $BACKUP_DIR
+time rm -rf -v $BACKUP_DIR
 wait
 
 exit
