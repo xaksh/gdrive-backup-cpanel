@@ -16,6 +16,6 @@ databases=`mysql -u $DB_USER -p$DB_USER_PASSWORD -e "SHOW DATABASES;" | tr -d "|
 for db in $databases; do
     if [[ "$db" != "information_schema" ]] && [[ "$db" != "performance_schema" ]] && [[ "$db" != "mysql" ]] && [[ "$db" != "cphulkd" ]] && [[ "$db" != "roundcube" ]] && [[ "$db" != "leechprotect" ]] && [[ "$db" != "modsec" ]] && [[ "$db" != _* ]] ; then
         echo "Dumping database: $db"
-        mysqldump -u $DB_USER -p$DB_USER_PASSWORD --databases $db > $DB_BACKUP_DIR/$DATE.$db.sql
+        mysqldump -u $DB_USER -p$DB_USER_PASSWORD $db > $DB_BACKUP_DIR/$DATE.$db.sql
     fi
 done
