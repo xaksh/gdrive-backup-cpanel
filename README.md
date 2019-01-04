@@ -13,6 +13,8 @@ Automate Uploading of cPanel Created Backups to Google Drive using rclone
 
 2) Run setup.sh with Server Hostname, Host Node, Cron Job Time as arguments
 
+ > cd gdrive-backup-cpanel
+
  > source setup.sh "server.hostname.com" "swift" "30 5 * * *"
 
    server.hostname.com = Server's Hostname where Backup Script will run
@@ -23,3 +25,5 @@ Automate Uploading of cPanel Created Backups to Google Drive using rclone
 
    Example: 
  > source setup.sh "swift.basezap.com" "swift" "30 5 * * *"
+
+3) rclone will ask to create a new remote. Make remote for Google drive with "gdrive" as remote name without qoutes.
