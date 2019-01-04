@@ -1,11 +1,17 @@
 # cpanel-backups-upload-to-gdrive
 Automate Uploading of cPanel Created Backups to Google Drive using rclone
 
- Clone this repo in /root directory of the server with directory name gdrive-backup-cpanel using following Command
+1) Clone this repo in /root directory of the server with directory name gdrive-backup-cpanel using following Command
  
  > git clone https://github.com/xaksh/gdrive-backup-cpanel -b cpanel+gdrive gdrive-backup-cpanel
+ 
+ or you can use wget to download Zip Archive and Extract.
+ 
+ > wget 'https://github.com/xaksh/gdrive-backup-cpanel/archive/cpanel+gdrive.zip'
+ 
+ > unzip -j cpanel+gdrive.zip -d gdrive-backup-cpanel
 
- Run setup.sh with Server Hostname, Host Node, Cron Job Time as arguments
+2) Run setup.sh with Server Hostname, Host Node, Cron Job Time as arguments
 
  > source setup.sh "server.hostname.com" "swift" "30 5 * * *"
 
