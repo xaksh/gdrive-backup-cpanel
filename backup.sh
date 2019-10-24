@@ -12,7 +12,7 @@ mkdir -p "$BACKUP_DIR/$DATE"
 echo "~~~~~~~~~~~~~~ Starting BACKUP Creation and Upload to Google Drive ~~~~~~~~~~~~~~"
 echo $DATE
 start=$SECONDS
-ls -1 /var/cpanel/users | while read user; do
+ls -1 /var/cpanel/users -Isystem | while read user; do
 /scripts/pkgacct $user $BACKUP_DIR/$DATE --backup --skiplogs --skipbwdata --nocompress > /dev/null
 wait
 rclone copy $BACKUP_DIR/$DATE gdrive:basezap"$NODE"nodebackups/$SERVER_HOSTNAME/$DATE
