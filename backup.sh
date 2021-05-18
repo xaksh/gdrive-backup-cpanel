@@ -24,13 +24,16 @@ ls -1 /var/cpanel/users -Isystem | while read user; do
 wait
 rclone copy $BACKUP_DIR/$DATE gdrive:basezap"$NODE"nodebackups/$SERVER_HOSTNAME/$DATE > /dev/null 2>> /root/gdrive-backup-cpanel/user.log
 wait
+# Remove backup file
+rm -f $BACKUP_DIR/$DATE/* > /dev/null 2>> /root/gdrive-backup-cpanel/user.log
+wait
 if [[ -s /root/gdrive-backup-cpanel/user.log ]]; then
 	echo -e "$TO\n$FROM\nMessage-ID: <$MID@bz>\nSubject: Backup Failed - $SERVER_HOSTNAME\n\n$user Backup Failed" | ssmtp $NOTIFY_TO
 fi
 # Update temp.log with user.log
 cat /root/gdrive-backup-cpanel/user.log >> /root/gdrive-backup-cpanel/temp.log
-# Clean backup directory and user log file
-rm -f $BACKUP_DIR/$DATE/* /root/gdrive-backup-cpanel/user.log
+# Remove user log file
+rm -f /root/gdrive-backup-cpanel/user.log
 wait
 done
 if [[ -s /root/gdrive-backup-cpanel/temp.log ]]; then
