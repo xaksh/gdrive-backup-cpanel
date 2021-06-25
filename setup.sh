@@ -8,6 +8,9 @@ sed -i "s/^FROM=.*/FROM='$5'/" /root/gdrive-backup-cpanel/backup.sh
 sed -i "s/^TO=.*/TO='$6'/" /root/gdrive-backup-cpanel/backup.sh
 sed -i "s?PATH=.*?PATH=$PATH?" /root/gdrive-backup-cpanel/backup.sh
 
+# Set exclude backup list
+cat exclude.txt > /etc/cpbackup-exclude.conf
+
 # Run cron.sh for adding cronjob
 bash /root/gdrive-backup-cpanel/cron.sh "$3"
 
