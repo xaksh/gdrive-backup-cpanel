@@ -11,7 +11,7 @@ TO=
 MID="$(</dev/urandom tr -dc "A-Za-z0-9" | head -c26)"
 
 #Set the PATH variable
-export PATH=/usr/local/cpanel/3rdparty/lib/path-bin:/usr/local/sbin:/sbin:/bin:/usr/sbin:/usr/bin:/opt/cpanel/composer/bin:/root/bin
+export PATH=
 
 # Clean and Create fresh backup directory
 rm -rf $BACKUP_DIR/* && mkdir -p "$BACKUP_DIR/$DATE"
